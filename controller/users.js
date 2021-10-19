@@ -61,7 +61,7 @@ module.exports.login = async (ctx, next) => {
           password,
         },
         jwtSecret,
-        { expiresIn: 60 * 60 }
+        { expiresIn: 24 * 60 * 60 }
       );
       ctx.body = {
         status: 200,

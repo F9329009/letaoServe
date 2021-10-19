@@ -4,7 +4,7 @@ var mysql = require("mysql");
 const { mysqlConfig } = require("./config");
 
 // 创建连接池
-var pool = mysql.createPool(mysqlConfig[process.env.MYSQL_ENV || "dev"]);
+var pool = mysql.createPool(mysqlConfig);
 
 module.exports.query = (sql, payload) => {
   return new Promise((resolve, reject) => {
