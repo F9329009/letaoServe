@@ -1,6 +1,6 @@
 // mysql 数据库连接配置
 module.exports.mysqlConfig = {
-  // 数据库主机名
+  // 主机地址
   host: process.env[`${process.env.ENV}_MYSQL_HOST`],
   // 端口
   port: process.env[`${process.env.ENV}_MYSQL_PORT`],
