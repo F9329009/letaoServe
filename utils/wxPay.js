@@ -26,7 +26,7 @@ module.exports.wxOrderHandle = async (url, data) => {
 // 生成商户订单号
 module.exports.getTradeNo = (prefix = "") => {
   const date = new Date();
-  return prefix + date.toJSON().substr(0, 11).replace(/[-T]/g, "") + date.getTime() + getRandomByLength(32 - 21 - prefix.length || 0);
+  return prefix + date.toJSON().substr(0, 10).replace(/[-]/g, "") + date.getTime() + getRandomByLength(32 - 21 - prefix.length || 0);
 };
 
 // 生成签名算法
