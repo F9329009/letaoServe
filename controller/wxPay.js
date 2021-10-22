@@ -14,7 +14,7 @@ module.exports.order = async (ctx, next) => {
     nonce_str: getTradeNo().toUpperCase(), // 随机字符串、
     // sign,
     body, //商品描述
-    out_trade_no: getTradeNo("letao"), // 商户订单号
+    out_trade_no: getTradeNo("LT"), // 商户订单号
     total_fee, // 订单总金额
     spbill_create_ip, // 终端IP
     notify_url: wxNativeOrderCallbackUrl, // 通知地址
@@ -160,7 +160,7 @@ module.exports.queryOrder = async (ctx, next) => {
   ctx.body = {
     status: 200,
     data: {
-      total_fee: data.total_fee[0], // 标价金额（订单总金额）
+      total_fee: data.total_fee && data.total_fee[0], // 标价金额（订单总金额）
       trade_state: data.trade_state[0], // 交易状态
       trade_state_desc: data.trade_state_desc[0], // 交易状态描述
     },
