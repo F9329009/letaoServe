@@ -3,6 +3,7 @@ const app = new Koa();
 const views = require("koa-views");
 const json = require("koa-json");
 const onerror = require("koa-onerror");
+const xmlParser = require("koa-xml-body");
 const bodyparser = require("koa-bodyparser");
 const logger = require("koa-logger");
 const jwt = require("koa-jwt");
@@ -15,7 +16,7 @@ const index = require("./routes/index");
 const users = require("./routes/users");
 const category = require("./routes/category");
 const sms = require("./routes/sms");
-const order = require("./routes/order");
+const wxPay = require("./routes/wxPay");
 
 // 错误处理
 onerror(app);
@@ -33,7 +34,9 @@ app.use((ctx, next) => {
   });
 });
 // 设置哪些接口需要Token
-app.use(jwt({ secret: jwtSecret }).unless({ path: [/^\/public/, /^\/users\/register/, /^\/users\/login/] }));
+app.use(jwt({ secret: jwtSecret }).unless({ path: [/^\/public/, /^\/users\/register/, /^\/users\/login/, /^\/wxPay\/pay\/notify/] }));
+// 获取XML格式的数据(必须在 koa-bodyparser 之前调用)
+app.use(xmlParser());
 // 获取POST请求的参数
 app.use(
   bodyparser({
@@ -63,7 +66,7 @@ app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
 app.use(category.routes(), category.allowedMethods());
 app.use(sms.routes(), sms.allowedMethods());
-app.use(order.routes(), order.allowedMethods());
+app.use(wxPay.routes(), wxPay.allowedMethods());
 
 // 错误处理
 app.on("error", (err, ctx) => {

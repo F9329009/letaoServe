@@ -82,7 +82,7 @@ module.exports.getRandom = (min, max) => {
 module.exports.getRandomByLength = (len) => {
   let code = "";
   while (code.length < len) {
-    code += module.exports.getRandom(0, 9);
+    code += this.getRandom(0, 9);
   }
   return code;
 };

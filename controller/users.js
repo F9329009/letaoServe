@@ -57,6 +57,7 @@ module.exports.login = async (ctx, next) => {
     if (user.length > 0) {
       const token = jwt.sign(
         {
+          id: user[0].id,
           username,
           password,
         },
@@ -65,8 +66,12 @@ module.exports.login = async (ctx, next) => {
       );
       ctx.body = {
         status: 200,
-        message: user[0],
-        data: { token },
+        data: {
+          id: user[0].id,
+          username: user[0].username,
+          mobile: user[0].mobile,
+          token,
+        },
       };
     } else {
       ctx.body = {

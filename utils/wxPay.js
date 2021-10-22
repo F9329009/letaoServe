@@ -2,14 +2,14 @@ const axios = require("axios");
 const crypto = require("crypto");
 const xml2js = require("xml2js");
 
-const { apikey } = require("../config/wx");
+const { apikey } = require("../config/wxPay");
 
 const { getRandomByLength } = require("./tencentcloudSdkNodejs");
 
-// 微信下单
-module.exports.createWxOrder = async (url, data) => {
+// 订单处理
+module.exports.wxOrderHandle = async (url, data) => {
   return new Promise(async (resolve, reject) => {
-    // 给微信发送下单请求
+    // 给微信发送请求
     const result = await axios({
       url,
       method: "POST",
@@ -24,9 +24,9 @@ module.exports.createWxOrder = async (url, data) => {
 };
 
 // 生成商户订单号
-module.exports.getTradeNo = () => {
+module.exports.getTradeNo = (prefix = "") => {
   const date = new Date();
-  return "letao" + date.getFullYear() + getRandomByLength(10) + date.getTime();
+  return prefix + date.getFullYear() + date.getTime() + getRandomByLength(32 - 17 - prefix.length || 0);
 };
 
 // 生成签名算法
