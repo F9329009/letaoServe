@@ -4,7 +4,6 @@ const { getRandomByLength } = require("../utils/tencentcloudSdkNodejs");
 
 module.exports.sendsms = async (ctx, next) => {
   const { module } = ctx.request.body;
-  console.log("module", module);
 
   // 验证码
   const code = getRandomByLength(6);

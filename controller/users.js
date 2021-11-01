@@ -45,7 +45,6 @@ module.exports.register = async (ctx, next) => {
 // 登录
 module.exports.login = async (ctx, next) => {
   const { username, password } = ctx.request.body;
-  console.log("ctx.request.body", ctx.request.body);
 
   // 参数校验
   const schema = Joi.object({
