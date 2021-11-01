@@ -1,4 +1,4 @@
-// const { sendSms } = require("../model/sms");
+const { sendSms } = require("../model/sms");
 
 const { getRandomByLength } = require("../utils/tencentcloudSdkNodejs");
 
@@ -10,7 +10,7 @@ module.exports.sendsms = async (ctx, next) => {
   const code = getRandomByLength(6);
   console.log("code", code);
 
-  // 判断是否需要正在发送送验证码
+  // 判断是否需要正在需要发送验证码(开发期间不需要每次都发送验证码)
   if (!process.isSendSms) {
     // 模拟短信发送成功
     ctx.body = {

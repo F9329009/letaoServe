@@ -40,6 +40,8 @@ module.exports.order = async (ctx, next) => {
 
   // 创建订单
   const data = await wxOrderHandle(wxNativeOrderUrl, sendData);
+  console.log("data", data);
+
   const { return_code, return_msg } = data;
   // 判断是否下单成功
   if (return_code == "SUCCESS" && return_msg == "OK") {
@@ -161,8 +163,8 @@ module.exports.queryOrder = async (ctx, next) => {
     status: 200,
     data: {
       total_fee: data.total_fee && data.total_fee[0], // 标价金额（订单总金额）
-      trade_state: data.trade_state[0], // 交易状态
-      trade_state_desc: data.trade_state_desc[0], // 交易状态描述
+      trade_state: data.trade_state && data.trade_state[0], // 交易状态
+      trade_state_desc: data.trade_state_desc && data.trade_state_desc[0], // 交易状态描述
     },
   };
 };
