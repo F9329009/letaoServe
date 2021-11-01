@@ -1,5 +1,3 @@
-const { query } = require("../utils/mysql");
-
 const { sendSms } = require("../utils/tencentcloudSdkNodejs");
 
 // 发送短信

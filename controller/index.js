@@ -30,30 +30,34 @@ module.exports.banners = async (ctx, next) => {
 };
 
 // 运动专区
-module.exports.sports = async (ctx, next) => {
+module.exports.sport = async (ctx, next) => {
   // const data = await query("SELECT * FROM category");
   ctx.body = {
     status: 200,
     data: [
       {
+        id: 1,
         name: "adidas阿迪达斯 男式 场下休闲篮球鞋S83700",
         img: "/images/product.jpg",
         price: 1.0,
         oldPrice: 888.0,
       },
       {
+        id: 2,
         name: "FORUM 84 LOW 新款低帮经典运动鞋",
         img: "/images/product.jpg",
         price: 1.0,
         oldPrice: 899.0,
       },
       {
+        id: 3,
         name: "adidas阿迪达斯 男式 场下休闲篮球鞋S83700",
         img: "/images/product.jpg",
         price: 1.0,
         oldPrice: 888.0,
       },
       {
+        id: 4,
         name: "adidas阿迪达斯 男式 场下休闲篮球鞋S83700",
         img: "/images/product.jpg",
         price: 1.0,
@@ -64,7 +68,7 @@ module.exports.sports = async (ctx, next) => {
 };
 
 // 宫格列表
-module.exports.gridlist = async (ctx, next) => {
+module.exports.gridList = async (ctx, next) => {
   // const data = await query("SELECT * FROM brand");
   ctx.body = {
     status: 200,

@@ -1,4 +1,4 @@
-const { sendSms } = require("../model/sms");
+// const { sendSms } = require("../model/sms");
 
 const { getRandomByLength } = require("../utils/tencentcloudSdkNodejs");
 
@@ -9,10 +9,24 @@ module.exports.sendsms = async (ctx, next) => {
   // 验证码
   const code = getRandomByLength(6);
   console.log("code", code);
+
+  // 判断是否需要正在发送送验证码
+  if (!process.isSendSms) {
+    // 模拟短信发送成功
+    ctx.body = {
+      status: 200,
+      message: "短信发送成功",
+      data: {
+        module,
+        code,
+      },
+    };
+    return;
+  }
+
+  // 发送验证码
   const result = await sendSms(module, code);
-
-  console.log("result", result);
-
+  // 判断验证码是否发送成功
   if (result.SendStatusSet[0].Code === "OK") {
     ctx.body = {
       status: 200,

@@ -54,7 +54,7 @@ module.exports.order = async (ctx, next) => {
         trade_type: data.trade_type[0],
         code_url: data.code_url[0],
         // 生成支付二维码图片
-        pay_img: await QRCode.toDataURL(data.code_url[0]),
+        pay_qrcode: await QRCode.toDataURL(data.code_url[0]),
       },
     };
   } else {
